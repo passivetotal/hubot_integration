@@ -74,7 +74,7 @@ get_data = (robot, url, payload, callback) ->
         response.message = "You need to set your username and API key before I can run any commands!"
         callback(response)
     robot.http(url + payload)
-    .headers(Authorization: auth)
+    .headers(Authorization: auth, 'PT-INTEGRATION': 'Hubot')
     .get() (err, res, body) ->
         switch res.statusCode
             when 200
@@ -106,7 +106,7 @@ send_data = (robot, url, payload, callback) ->
         response.message = "You need to set your username and API key before I can run any commands!"
         callback(response)
     robot.http(url)
-    .headers(Authorization: auth, "Content-Type": 'application/json')
+    .headers(Authorization: auth, "Content-Type": 'application/json', 'PT-INTEGRATION': 'Hubot')
     .post(JSON.stringify(payload)) (err, res, body) ->
         switch res.statusCode
             when 200
