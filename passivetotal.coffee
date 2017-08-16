@@ -295,7 +295,7 @@ module.exports = (robot) ->
 
     robot.hear /pt pdns (.*)/i, (msg) ->
         response = ""
-        value = msg.match[1].toLowerCase()
+        value = msg.match[1].toLowerCase().replace("http://", "")
         data = "?query=#{encodeURIComponent value}"
         api_response = get_data(robot, PT_PASSIVE_DNS_URL, data, (api_response) ->
             if api_response.success
